@@ -6,6 +6,7 @@ from flask_login import LoginManager
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,6 +15,7 @@ app.app_context().push()
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+mail = Mail(app)
 
 from app import views, models, errors
 
